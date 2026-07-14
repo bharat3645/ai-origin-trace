@@ -1,0 +1,21 @@
+# Core test runner (required for `pytest` to work).
+pytest>=7.0
+
+# --- Optional / soft dependencies ---
+# nltk is OPTIONAL. If installed (and its 'punkt' data downloaded), the text
+# tokenizer opportunistically uses it for slightly better sentence splitting.
+# If it's missing, or its corpora haven't been downloaded, ai_origin_trace
+# transparently falls back to a built-in regex tokenizer -- the tool never
+# breaks because of a missing nltk download. Install manually if wanted:
+#   pip install nltk
+#   python -c "import nltk; nltk.download('punkt')"
+# nltk>=3.8
+
+# anthropic is OPTIONAL and only used by the (not-enabled-by-default)
+# narrative-explanation layer, which turns the per-feature breakdown into a
+# plain-English paragraph via the Claude API. It follows the same
+# no-key-fallback pattern as the rest of this tool: if ANTHROPIC_API_KEY is
+# unset, that layer is simply skipped -- no network call is ever made
+# without an explicit opt-in and an explicit key.
+#   export ANTHROPIC_API_KEY=<your-key-here>
+# anthropic>=0.25
